@@ -324,7 +324,7 @@ function update_game(dt)
             pick_card_and_play_it()
             time_in_1vs1 = - 1.4
             
-          elseif played_a_card or #players_hand[turn_player] == 0 then
+          elseif played_a_card or #players_hand[get_next_player()] == 0 then
           
             if played_a_card then
               sounds["card"]:stop()
@@ -350,7 +350,6 @@ function update_game(dt)
             elseif t_p_s > nt_p_s then
               to_turn_player = true
             else
-            
               init_pick_card() 
             end         
             
@@ -447,6 +446,8 @@ function update_game(dt)
                 end
                 
               end
+              p1_score = get_score(1) 
+              p2_score = get_score(2)
             end
             
             if #players_hand[1] < 1 and choosing_state then 
