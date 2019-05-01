@@ -157,10 +157,20 @@ function update_game(dt)
   
   local r_b_mouse = false
   
+  
   if love.mouse.isDown(1) then -- right
     if not clicked then r_b_mouse = true clicked = true end
   else
     clicked = false
+  end 
+  
+  local l_b_mouse = false
+  
+  
+  if love.mouse.isDown(2) then -- right
+    if not lclicked then l_b_mouse = true lclicked = true end
+  else
+    lclicked = false
   end 
   
   if not (menu == "start") then 
@@ -242,6 +252,22 @@ function update_game(dt)
   if(menu == "1vs1") then
   
     message = nil
+    
+    -- cheat
+    if l_b_mouse then
+    
+      players_hand[1] = {}
+      players_hand[2]  = {value = 3}
+      players_table[1] = {{value = 3}}
+      players_table[1] = {{value = 3}}
+    
+      -- players_deck[1][players_deck[1]] = {value = 3}
+      -- players_deck[1][players_deck[1]] = {value = 3}
+      -- players_deck[1][players_deck[1]] = {value = 3}
+    
+    end
+    
+    
     if not game_over then 
       time_in_1vs1 = time_in_1vs1 + dt
       
