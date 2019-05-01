@@ -1,4 +1,5 @@
 main: main.lua
 title: Blaze!
 owner: spaceling
+primaryColor: 5555bb
 coverImage: https://raw.githubusercontent.com/trasevol-dog/5hp/master/assets/blaze_preview.png
