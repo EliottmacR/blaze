@@ -1,4 +1,6 @@
 main: main.lua
 title: Blaze
 owner: spaceling
+primaryColor: 6666dd
+coverImage: https://raw.githubusercontent.com/EliottmacR/blaze/master/logo-500.png
 
