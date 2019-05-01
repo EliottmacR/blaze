@@ -120,7 +120,7 @@ function init_game()
   play_y_game_over = GAME_HEIGHT*3/4
 
   sounds["theme"]:setLooping(true)
-  sounds["theme"]:play()
+  -- sounds["theme"]:play()
   
   sounds["theme"]:setVolume(.5)
   
@@ -351,7 +351,9 @@ function update_game(dt)
               to_turn_player = true
             else
               init_pick_card() 
-            end         
+            end        
+            
+            time_in_1vs1 = - .8
             
           else
           
@@ -401,8 +403,13 @@ function update_game(dt)
                     for i = 1, 13 do
                         local hand_index = find_card(order[i], 2)
                         
-                        if order[i] > 10 or  p1_score + order[i] > p2_score - 1 then -- if number
-                          table.insert(found_indexes, hand_index)
+                        if hand_index then
+                          print("ind")
+                          if order[i] > 10 or  p1_score + order[i] > p2_score - 1 then -- if number
+                            table.insert(found_indexes, hand_index)
+                          end 
+                        else
+                          print("no_ind")
                         end
                         
                     end
@@ -415,6 +422,7 @@ function update_game(dt)
                     else
                       ind = irnd(1, #players_hand[2])
                     end
+                    
                     
                   end
                   
@@ -786,72 +794,78 @@ current_tuto_page = 1
 
 tutostr = {}
 
-tutostr[1] = {
+table.insert(tutostr,{
   " Blaze is a card game where two players play against",
   " each other.",
   " The game ends when a player cannot play anymore.",
   " The one with the highest amount of points wins."
-}
+})
 
-tutostr[2] = {
+table.insert(tutostr,{
   " The blaze deck is split in half and distributed to each player",
   " They both start the game with 7 cards in hand",
   " ",
   " Players have to play one card every turn."
-}
+})
 
-tutostr[3] = {
+table.insert(tutostr,{
   " There is 2 types of cards : point cards and special cards.",
   " Point cards rise your point count",
   " and ",
   " Special cards have different effects"
-}
+})
 
-tutostr[4] = {
+table.insert(tutostr,{
   " The Blaze card destroys the",
   "  ",
   " last card the opponent have played."
-}
+})
 
-tutostr[5] = {
+table.insert(tutostr,{
   " The Mirror card switches the",
   "  ",
   " two players number of points."
-}
+})
 
-tutostr[6] = {
+table.insert(tutostr,{
   " The Joker card can get you out of ",
   "  ",
   " a pinch, eventually."
-}
+})
 
-tutostr[7] = {
+table.insert(tutostr,{
   " The II card lets you play one of ",
   "  ",
   " your opponent's card."
-}
+})
 
-tutostr[8] = {
+table.insert(tutostr,{
+  " Being the first to play lets you draw a card,",
+  "  ",
+  " as being the target of a blaze or a II card."
+})
+
+table.insert(tutostr,{
   " If the two players have the same amount of points,",
   " they discard their played card,",
   " their points resets back to 0",
   " and draw a new one that will be played instantly."
-}
+})
 
-tutostr[9] = {
+table.insert(tutostr,{
   " The player with the lowest amount of point begins",
   " (special card count for 2 points).",
   " The first player to play is decided using the same technique."
-}
+})
    
-tutostr[10] = {
+table.insert(tutostr,{
   " You can go back to the main menu by clicking the",
   " arrow in the top left corner of the screen.",
   "  ",
   " Thank you for playing the game, have fun !",
   "  ",
   " Eliott"
-}
+})
     
 
 -- DRAW STUFF
