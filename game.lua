@@ -754,6 +754,7 @@ end
 function transition_to_rules()
   background = false
   menu = "rules"
+  current_tuto_page = 1
 end
 
 function transition_to_1vs1()
