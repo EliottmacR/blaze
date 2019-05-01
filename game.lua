@@ -299,32 +299,26 @@ function update_game(dt)
           
           if to_turn_player then 
             turn_player = get_next_player() 
-            time_in_1vs1 = - .8
+            -- time_in_1vs1 = - .8
             to_turn_player = false
           end
-          
-          if turn_player and turn_player ~= 0 then
-            if #players_hand[turn_player] < 1 then 
-              end_game(get_next_player())
-            end
-          end
-          
+                    
           if not hand_picked_done then 
             sounds["card"]:stop()
             sounds["card"]:play()
             from_deck_to_table(1)
             from_deck_to_table(2)
             hand_picked_done = true
-            time_in_1vs1 = -.5
+            -- time_in_1vs1 = -.5
             
           elseif not picked_card then
             sounds["card"]:stop()
             sounds["card"]:play()
             picked_card = true
             pick_card_and_play_it()
-            time_in_1vs1 = - 1.4
+            -- time_in_1vs1 = - 1.4
             
-          elseif played_a_card or #players_hand[get_next_player()] == 0 then
+          elseif played_a_card or #players_hand[turn_player] == 0 then
           
             if played_a_card then
               sounds["card"]:stop()
@@ -342,7 +336,6 @@ function update_game(dt)
             
             
             if t_p_s < nt_p_s then
-              
               end_game(get_next_player())
               
             elseif next_p_hand_is_empty and t_p_s ~= nt_p_s then
@@ -360,7 +353,6 @@ function update_game(dt)
             if turn_player == 2 then
               ind = mouse_pos_to_card_on_screen(get_mouse_pos())
             else
-            
               local order = {2, 13, 12, 11, 1, 3, 4, 5, 6, 7, 8, 9, 10}
               r_b_mouse = true
               
@@ -394,38 +386,30 @@ function update_game(dt)
                 -- played a 2
                   -- find every card that can be played, play one at random
                   
-                  local found_indexes = {}
-                  local choosen_one
-                 
-                  if #players_hand[2] < 1 then choosen_one = 2                   
+                local found_indexes = {}
+                local choosen_one
+                              
+                for i = 1, 13 do
+                    local hand_index = find_card(order[i], 2)
                     
-                  else                  
-                    for i = 1, 13 do
-                        local hand_index = find_card(order[i], 2)
-                        
-                        if hand_index then
-                          print("ind")
-                          if order[i] > 10 or  p1_score + order[i] > p2_score - 1 then -- if number
-                            table.insert(found_indexes, hand_index)
-                          end 
-                        else
-                          print("no_ind")
-                        end
-                        
-                    end
-                    
-                    if #found_indexes > 0 then 
-                      ind = found_indexes[irnd(1, #found_indexes)]
-                    elseif #players_hand[2] < 1 then
-                      players_hand[2][1] = {value = 2}
-                      ind = 1
+                    if hand_index then
+                      if order[i] > 10 or  p1_score + order[i] > p2_score - 1 then -- if number
+                        table.insert(found_indexes, hand_index)
+                      end 
                     else
-                      ind = irnd(1, #players_hand[2])
                     end
                     
-                    
-                  end
-                  
+                end
+                
+                if #found_indexes > 0 then 
+                  ind = found_indexes[irnd(1, #found_indexes)]
+                elseif #players_hand[2] < 1 then
+                  players_hand[2][1] = {value = 2}
+                  ind = 1
+                else
+                  ind = irnd(1, #players_hand[2])
+                end
+                
               else
               
                 local found = false
@@ -436,7 +420,7 @@ function update_game(dt)
                   if hand_index then 
                   
                     local OK = true
-                    if i > 4 then -- if card is number
+                    if i > 4 and then
                       if p1_score + order[i] < p2_score then
                         OK = false
                       end
@@ -450,7 +434,9 @@ function update_game(dt)
                 end
                 
                 if not found then 
-                  ind = irnd(1, #players_hand[1])
+                  print("ok janai")
+                  ind = irnd2(1, #players_hand[1])
+                  print(ind)
                 end
                 
               end
@@ -463,7 +449,7 @@ function update_game(dt)
               ind = 1
             end
             
-            if ind and r_b_mouse then
+            if ind and r_b_mouse and not game_over then
               if choosing_state then 
                 choose_opponent_card() 
               else
@@ -542,7 +528,7 @@ function looser_gets_trash(looser)
 end
 
 function end_game(winner)
-  time_in_1vs1 = -.7
+  -- time_in_1vs1 = -.7
   sounds["card"]:stop()
   sounds["blaze"]:play()
   to_game_over = true
@@ -576,7 +562,7 @@ function play_selected_card()
   
   reorganise_player_hand(turn_player, ind)
   
-  if c.value > 10 or c.value == 2 then time_in_1vs1 = -0.5 end
+  -- if c.value > 10 or c.value == 2 then time_in_1vs1 = -0.5 end
   
   ind = nil
 end
@@ -1622,7 +1608,7 @@ end
 function create_blaze_deck()
   total_card = 0
   pattern_deck = {[1] = 1,
-                  [2] = 10,
+                  [2] = 8,
                   [3] = 6,
                   [4] = 6,
                   [5] = 5,
@@ -1634,22 +1620,7 @@ function create_blaze_deck()
                   [11] = 3,
                   [12] = 3,
                   [13] = 3
-                 }
-                 
-  -- pattern_deck = {-- [1] = 2,
-                  -- [2] = 1,
-                  -- [3] = 2,
-                  -- [4] = 3,
-                  -- [5] = 2,
-                  -- [6] = 5,
-                  -- [7] = 5,
-                  -- [8] = 7,
-                  -- [9] = 5,
-                  -- [10] = 6,
-                  -- [11] = 2,
-                  -- [12] = 2,
-                  -- [13] = 2
-                 -- }                 
+                 }                
    
   deck = {}
   

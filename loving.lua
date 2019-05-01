@@ -37,6 +37,13 @@ function irnd(a, b)
   
 end
 
+function irnd2(...)  
+
+  
+  return math.floor(love.math.random(...))
+  
+end
+
 function cos(...) return math.cos(...) end
 function sin(...) return math.sin(...) end
 
