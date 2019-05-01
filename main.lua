@@ -4,17 +4,17 @@ if CASTLE_PREFETCH then
     'game.lua',
     'loving.lua',
     
-    'assets/Fipps-Regular.ttf',
+    'assets/Fipps-Regular.otf',
     
     'assets/menu_back.png',
     'assets/transition.png',
     
     "assets/sound/blaze.wav",
-    "assets/sfx/blaze_theme.wav",
-    "assets/sfx/card.wav",
-    "assets/sfx/joker.wav",
-    "assets/sfx/mirror.wav",
-    "assets/sfx/select.wav",
+    "assets/sound/blaze-theme.wav",
+    "assets/sound/card.wav",
+    "assets/sound/joker.wav",
+    "assets/sound/mirror.wav",
+    "assets/sound/select.wav",
     
     "assets/cards/1.png",
     "assets/cards/2.png",
@@ -24,6 +24,8 @@ if CASTLE_PREFETCH then
     "assets/cards/6.png",
     "assets/cards/7.png",
     "assets/cards/8.png",
+    "assets/cards/9.png",
+    "assets/cards/10.png",
     "assets/cards/blaze.png",
     "assets/cards/joker.png",
     "assets/cards/mirror.png",

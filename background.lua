@@ -66,8 +66,8 @@ function init_assets()
   table.insert(cards,love.graphics.newImage( "assets/cards/6.png" ))
   table.insert(cards,love.graphics.newImage( "assets/cards/7.png" ))
   table.insert(cards,love.graphics.newImage( "assets/cards/8.png" ))
-  -- table.insert(cards,love.graphics.newImage( "assets/cards/9.png" ))
-  -- table.insert(cards,love.graphics.newImage( "assets/cards/10.png" ))
+  table.insert(cards,love.graphics.newImage( "assets/cards/9.png" ))
+  table.insert(cards,love.graphics.newImage( "assets/cards/10.png" ))
   table.insert(cards,love.graphics.newImage( "assets/cards/blaze.png" ))
   table.insert(cards,love.graphics.newImage( "assets/cards/mirror.png" ))
   table.insert(cards,love.graphics.newImage( "assets/cards/joker.png" ))
@@ -92,14 +92,14 @@ function draw_background()
       face = cards[c.value]
     end
     
-    local x = c.x + rw * (RATIO_CARD_WIDTH - TRANSFORMED_CARD_WIDTH/2)
+    local x = c.x + math.abs(rw) * (RATIO_CARD_WIDTH - TRANSFORMED_CARD_WIDTH/2)
     local y = c.y
     
     color(0, 0, 0)
     draw_fill_rect(
           x + 20, 
           y + 20, 
-          TRANSFORMED_CARD_WIDTH * rw, 
+          TRANSFORMED_CARD_WIDTH * math.abs(rw), 
           TRANSFORMED_CARD_HEIGHT)
           
     color(1, 1, 1)
@@ -107,7 +107,7 @@ function draw_background()
           x , 
           y, 
           0, 
-          RATIO_CARD_WIDTH * rw, 
+          RATIO_CARD_WIDTH * math.abs(rw), 
           RATIO_CARD_HEIGHT)
   end
   -- hide_background()
