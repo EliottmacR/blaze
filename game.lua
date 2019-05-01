@@ -387,7 +387,6 @@ function update_game(dt)
                   -- find every card that can be played, play one at random
                   
                 local found_indexes = {}
-                local choosen_one
                               
                 for i = 1, 13 do
                     local hand_index = find_card(order[i], 2)
@@ -396,9 +395,7 @@ function update_game(dt)
                       if order[i] > 10 or  p1_score + order[i] > p2_score - 1 then -- if number
                         table.insert(found_indexes, hand_index)
                       end 
-                    else
                     end
-                    
                 end
                 
                 if #found_indexes > 0 then 
@@ -419,26 +416,17 @@ function update_game(dt)
                   local hand_index = find_card(order[i], 1)
                   if hand_index then 
                   
-                    local OK = true
-                    if i > 4 and then
-                      if p1_score + order[i] < p2_score then
-                        OK = false
-                      end
-                    end
-                    
-                    if OK then
+                    if not ((i > 4) and (p1_score + order[i] < p2_score)) then
                       ind = hand_index 
                       found = true
                     end
+                    
                   end                  
                 end
                 
                 if not found then 
-                  print("ok janai")
                   ind = irnd2(1, #players_hand[1])
-                  print(ind)
                 end
-                
               end
               p1_score = get_score(1) 
               p2_score = get_score(2)
