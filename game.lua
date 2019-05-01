@@ -538,7 +538,11 @@ function play_selected_card()
   elseif c.value == 1 then
     pick_a_card(turn_player)
   else
-    choosing_state = true
+    if #players_hand[get_next_player()] < 1 then
+      played_a_card = true
+    else
+      choosing_state = true
+    end
   end
   
   local i = #players_table[turn_player] + 1
