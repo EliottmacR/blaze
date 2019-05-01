@@ -303,8 +303,10 @@ function update_game(dt)
             to_turn_player = false
           end
           
-          if #players_hand[turn_player] < 1 then 
-            end_game(get_next_player())
+          if turn_player and turn_player ~= 0 then
+            if #players_hand[turn_player] < 1 then 
+              end_game(get_next_player())
+            end
           end
           
           if not hand_picked_done then 
