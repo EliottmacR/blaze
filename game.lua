@@ -155,22 +155,11 @@ function update_game(dt)
   hover_back_arrow = false
     
   
-  local r_b_mouse = false
-  
-  
+  local r_b_mouse = false  
   if love.mouse.isDown(1) then -- right
     if not clicked then r_b_mouse = true clicked = true end
   else
     clicked = false
-  end 
-  
-  local l_b_mouse = false
-  
-  
-  if love.mouse.isDown(2) then -- right
-    if not lclicked then l_b_mouse = true lclicked = true end
-  else
-    lclicked = false
   end 
   
   if not (menu == "start") then 
@@ -252,21 +241,6 @@ function update_game(dt)
   if(menu == "1vs1") then
   
     message = nil
-    
-    -- cheat
-    if l_b_mouse then
-    
-      players_hand[1] = {}
-      players_hand[2]  = {value = 3}
-      players_table[1] = {{value = 3}}
-      players_table[1] = {{value = 3}}
-    
-      -- players_deck[1][players_deck[1]] = {value = 3}
-      -- players_deck[1][players_deck[1]] = {value = 3}
-      -- players_deck[1][players_deck[1]] = {value = 3}
-    
-    end
-    
     
     if not game_over then 
       time_in_1vs1 = time_in_1vs1 + dt
@@ -490,18 +464,6 @@ function update_game(dt)
             end
             
           end
-        else -- time < 0
-        
-          -- if picked_card then
-            -- if turn_player == 1 then 
-              -- message = "CPU Plays First!"
-            -- else
-              -- message = "You Play First!"
-            -- end
-          -- else
-            -- message = nil
-          -- end
-          
         end
       end
     else
@@ -585,6 +547,8 @@ function play_selected_card()
 
   local c = players_hand[turn_player][ind]
   
+  if not c then return end 
+  
   played_a_card = false
   
   if c.value > 2 then
@@ -652,7 +616,6 @@ function use_card()
     sounds["card"]:stop()
     sounds["joker"]:play()
   end
-  
   
   p1_score = get_score(1)
   p2_score = get_score(2)
