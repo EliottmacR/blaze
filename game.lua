@@ -120,7 +120,7 @@ function init_game()
   play_y_game_over = GAME_HEIGHT*3/4
 
   sounds["theme"]:setLooping(true)
-  -- sounds["theme"]:play()
+  sounds["theme"]:play()
   
   sounds["theme"]:setVolume(.5)
   
