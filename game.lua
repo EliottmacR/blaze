@@ -443,7 +443,7 @@ function update_game(dt)
                 end
                 
                 if not found then 
-                  ind = players_hand[1][irnd(1, #players_hand[1])]
+                  ind = irnd(1, #players_hand[1])
                 end
                 
               end
