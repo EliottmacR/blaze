@@ -789,7 +789,7 @@ table.insert(tutostr,{
 })
 
 table.insert(tutostr,{
-  " There is 2 types of cards : "
+  " There is 2 types of cards : ",
   " point cards and special cards.",
   " Point cards rise your point count",
   " and ",
