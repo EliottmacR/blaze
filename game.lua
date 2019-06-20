@@ -781,14 +781,16 @@ table.insert(tutostr,{
 })
 
 table.insert(tutostr,{
-  " The blaze deck is split in half and distributed to each player",
+  " The blaze deck is split in half",
+  " and distributed to each player",
   " They both start the game with 7 cards in hand",
   " ",
   " Players have to play one card every turn."
 })
 
 table.insert(tutostr,{
-  " There is 2 types of cards : point cards and special cards.",
+  " There is 2 types of cards : "
+  " point cards and special cards.",
   " Point cards rise your point count",
   " and ",
   " Special cards have different effects"
